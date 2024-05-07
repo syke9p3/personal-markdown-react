@@ -14,6 +14,8 @@ const bgColors = [
   "#ef989e",
 ];
 
+// TODO: implement color customization
+
 const NotePage = () => {
   let { noteId } = useParams();
 
@@ -23,6 +25,8 @@ const NotePage = () => {
     loading,
   } = useFetch(`http://localhost:3030/notes/${noteId}`);
 
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const [color, setColor] = useState("#f7dad2");
 
   const getRandomColor = () => {
@@ -30,10 +34,14 @@ const NotePage = () => {
     return bgColors[randomIndex];
   };
 
-  // TODO: implement color customization
   useEffect(() => {
+    if (note) {
+      setTitle(note.title);
+      setContent(note.content);
+    }
+
     setColor(getRandomColor());
-  }, []);
+  }, [note]);
 
   console.log("noteId");
   console.log(noteId);
@@ -46,22 +54,46 @@ const NotePage = () => {
       <Breadcrumb />
 
       {note ? (
-        <div
-          className={`grid grid-cols-subgrid px-6 py-4 pb-8 text-[#0e1121] rounded-xl border border-black cursor-pointer hover:opacity-80 transition-all duration-150`}
-          style={{ backgroundColor: color }}
-        >
-          {/* Note Title */}
-          <div className="mb-3 truncate note-title">
-            <h3 className="text-2xl font-bold">{note.title}</h3>
+        <div className="overflow-hidden pb-4 rounded-xl bg-[#252032]">
+          <div className="cursor-pointer">
+            {/* Note Title */}
+            <div className="note-title">
+              <input
+                type="text"
+                className="px-6 py-4 w-full text-2xl font-bold border-b outline-none border-b-black"
+                placeholder="Create New Note"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
+            {/* Note Content */}
+            <textarea
+              type="text"
+              className="px-6 py-4 w-full h-80 outline-none resize-none"
+              placeholder="Take a note..."
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
           </div>
-          {/* Note Content */}
-          <div className="/*bg-blue-50*/ text-ellipsis overflow-y-hidden pb-4 max-h-80">
-            {note.content}
+          <div className="flex justify-between px-3">
+            <div></div>
+            <button
+              // onClick={handleEditNote}
+              className="mt-3 rounded-md py-2 font-bold bg-[#777cca] hover:bg-[#7d84e7] px-3 "
+            >
+              Save Note
+            </button>
           </div>
         </div>
       ) : (
         <div></div>
       )}
+
+        <div>
+          <p>Note title: { title }</p>
+          <p>Note content: { content }</p>
+        </div>
+
     </PageLayout>
   );
 };
