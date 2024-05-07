@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    transition: all 150ms ease-in-out;
+}
+
+html {
+    /* font-family: 'Ubuntu'; */
+    background-color: #12101f;
+    color: white;
+    /* color:   #a3dd93,
+    #8badf4,
+    #92d6e3,
+    #f0c7c5,
+    #f7dad2,
+    #ef989e, */
+}
+
+input, textarea {
+    background: #252032;
+}
