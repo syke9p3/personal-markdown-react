@@ -39,9 +39,9 @@ const Note = (props) => {
           <h3 className="text-2xl font-bold">{noteTitle}</h3>
         </div>
         {/* Note Content */}
-        <div className="/*bg-blue-50*/ text-ellipsis overflow-y-hidden pb-4 max-h-80">
+        <pre className="/*bg-blue-50*/ text-ellipsis overflow-y-hidden pb-4 max-h-80">
           {noteContent}
-        </div>
+        </pre>
       </div>
     </NavLink>
   );

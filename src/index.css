@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-    transition: all 150ms ease-in-out;
+    /* transition: all 150ms ease-in-out; */
 }
 
 html {
@@ -20,4 +20,8 @@ html {
 
 input, textarea {
     background: #252032;
+}
+
+pre {
+    font-family: 'Ubuntu', sans-serif;
 }
