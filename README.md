@@ -2,6 +2,10 @@
 
 Markdown app
 
+## TODO
+
+- deploy on GitHub pages
+- setup React Router
 
 
 ## Planned Features
