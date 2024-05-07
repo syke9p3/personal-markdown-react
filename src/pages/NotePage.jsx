@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PageLayout from "../components/PageLayout";
 import axios from "axios";
 import Breadcrumb from "../components/Breadcrumb";
@@ -18,6 +18,7 @@ const bgColors = [
 
 const NotePage = () => {
   let { noteId } = useParams();
+  const navigateTo = useNavigate();
 
   const {
     data: note,
@@ -49,6 +50,22 @@ const NotePage = () => {
   // TODO: create Breadcrumb component
   // TODO: search how other React apps implement breadcrumbs
 
+  const handleEditNote = async (e) => {
+    e.preventDefault();
+    const editedNoteData = {
+      title: title,
+      content: content,
+    };
+
+    try {
+      await axios.put(`http://localhost:3030/notes/${noteId}`, editedNoteData);
+      console.log("Note saved");
+      navigateTo('/')
+    } catch (error) {
+      console.error("Failed to save note:", error);
+    }
+  };
+
   return (
     <PageLayout>
       <Breadcrumb />
@@ -78,7 +95,7 @@ const NotePage = () => {
           <div className="flex justify-between px-3">
             <div></div>
             <button
-              // onClick={handleEditNote}
+              onClick={handleEditNote}
               className="mt-3 rounded-md py-2 font-bold bg-[#777cca] hover:bg-[#7d84e7] px-3 "
             >
               Save Note
@@ -89,11 +106,10 @@ const NotePage = () => {
         <div></div>
       )}
 
-        <div>
-          <p>Note title: { title }</p>
-          <p>Note content: { content }</p>
-        </div>
-
+      <div>
+        <p>Note title: {title}</p>
+        <p>Note content: {content}</p>
+      </div>
     </PageLayout>
   );
 };
