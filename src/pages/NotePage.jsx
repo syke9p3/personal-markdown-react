@@ -44,8 +44,7 @@ const NotePage = () => {
     setColor(getRandomColor());
   }, [note]);
 
-  console.log("noteId");
-  console.log(noteId);
+  console.log("noteId: " + noteId);
 
   // TODO: create Breadcrumb component
   // TODO: search how other React apps implement breadcrumbs
