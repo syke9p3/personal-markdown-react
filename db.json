@@ -1,44 +1,49 @@
 {
   "notes": [
     {
-      "id": 1,
       "title": "Meeting Agenda",
-      "content": "Discuss project timelines and deliverables."
+      "content": "Discuss project timelines and deliverables. Edited",
+      "id": "1"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Grocery List",
       "content": "Milk, eggs, bread, fruits, vegetables."
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Book Recommendations",
       "content": "1. The Power of Habit\n2. Atomic Habits\n3. Thinking, Fast and Slow"
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Workout Plan",
       "content": "Monday: Cardio\nTuesday: Strength training\nWednesday: Rest\nThursday: Yoga\nFriday: HIIT"
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Travel Itinerary",
       "content": "Destination: Paris\nDeparture: July 10, 2024\nReturn: July 20, 2024\nActivities: Eiffel Tower, Louvre Museum, Seine River Cruise."
     },
     {
-      "id": 6,
+      "id": "6",
       "title": "Project Ideas",
       "content": "1. Mobile app for task management\n2. Online platform for language learning\n3. Community-based fitness app"
     },
     {
-      "id": 7,
+      "id": "7",
       "title": "Coding Resources",
       "content": "1. MDN Web Docs\n2. Stack Overflow\n3. GitHub repositories"
     },
     {
-      "id": 8,
+      "id": "8",
       "title": "Birthday Plans",
       "content": "Surprise party for John on Saturday at 7 PM. Cake, balloons, and music."
+    },
+    {
+      "title": "Edited title",
+      "content": "Content here was edited",
+      "id": "12"
     }
   ]
 }
