@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { getDateFromTimestamp, getTimeFromTimestamp } from "../utils/date";
 
 const bgColors = [
   '#a3dd93',
@@ -11,18 +12,19 @@ const bgColors = [
 ]
 
 const Note = (props) => {
-  const [noteId, setNoteId] = useState(props.note.id || "");
-  const [noteTitle, setNoteTitle] = useState(props.note.title || "");
-  const [noteContent, setContent] = useState(props.note.content || "");
+  const [note, setNote] = useState(props.note)
   const [color, setColor] = useState('#f7dad2');
 
   // TODO: extract to color utility so other files can use it
-  // TODO: display date and time - add timestamp to json
 
   const getRandomColor = () => {
     const randomIndex =  Math.floor(Math.random() * bgColors.length)
     return bgColors[randomIndex]
   }
+
+  const timestamp = note.updatedAt || note.timestamp;
+  const date = getDateFromTimestamp(timestamp);
+  const time = getTimeFromTimestamp(timestamp);
 
   // TODO: implement color customization
   useEffect(() => {
@@ -30,18 +32,19 @@ const Note = (props) => {
   }, [])
 
   return (
-    <NavLink to={`/notes/${noteId}`}>
-      <div className={`grid grid-cols-subgrid px-6 py-4 pb-8 text-[#0e1121] rounded-xl border border-black cursor-pointer hover:opacity-80 transition-all duration-150`}
+    <NavLink to={`/notes/${note.id}`}>
+      <div className={`grid grid-cols-subgrid px-6 py-4 pb-6 text-[#0e1121] rounded-xl border border-black cursor-pointer hover:opacity-80 transition-all duration-150`}
         style={{backgroundColor: color}}
       >
         {/* Note Title */}
         <div className="mb-3 truncate note-title">
-          <h3 className="text-2xl font-bold">{noteTitle}</h3>
+          <h3 className="text-2xl font-bold">{note.title}</h3>
         </div>
         {/* Note Content */}
-        <pre className="/*bg-blue-50*/ text-ellipsis overflow-y-hidden pb-4 max-h-80">
-          {noteContent}
+        <pre className="/*bg-blue-50*/ text-ellipsis overflow-y-hidden pb-8 max-h-80">
+          {note.content}
         </pre>
+      <p className="text-sm opacity-70">{`${date} (${time})`}</p>
       </div>
     </NavLink>
   );

@@ -4,6 +4,7 @@ import PageLayout from "../components/PageLayout";
 import axios from "axios";
 import Breadcrumb from "../components/Breadcrumb";
 import useFetch from "../hooks/useFetch";
+import { getDateFromTimestamp, getTimeFromTimestamp } from "../utils/date";
 
 const bgColors = [
   "#a3dd93",
@@ -28,7 +29,10 @@ const NotePage = () => {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
   const [color, setColor] = useState("#f7dad2");
+
 
   const getRandomColor = () => {
     const randomIndex = Math.floor(Math.random() * bgColors.length);
@@ -39,12 +43,17 @@ const NotePage = () => {
     if (note) {
       setTitle(note.title);
       setContent(note.content);
+      
+      const timestamp = note.updatedAt || note.timestamp;
+      setDate(getDateFromTimestamp(timestamp));
+      setTime(getTimeFromTimestamp(timestamp));
     }
 
     setColor(getRandomColor());
   }, [note]);
 
   console.log("noteId: " + noteId);
+  console.log(note);
 
   // TODO: create Breadcrumb component
   // TODO: search how other React apps implement breadcrumbs
@@ -54,12 +63,14 @@ const NotePage = () => {
     const editedNoteData = {
       title: title,
       content: content,
+      timestamp: note.timestamp,
+      updatedAt: new Date(),
     };
 
     try {
       await axios.put(`http://localhost:3030/notes/${noteId}`, editedNoteData);
       console.log("Note saved");
-      navigateTo('/')
+      navigateTo("/");
     } catch (error) {
       console.error("Failed to save note:", error);
     }
@@ -68,7 +79,6 @@ const NotePage = () => {
   return (
     <PageLayout>
       <Breadcrumb />
-
       {note ? (
         <div className="overflow-hidden pb-4 rounded-xl bg-[#252032]">
           <div className="cursor-pointer">
@@ -105,10 +115,14 @@ const NotePage = () => {
         <div></div>
       )}
 
-      <div>
+      <div className="flex justify-center py-4">
+        <p className="text-sm italic opacity-70">{`Last Edited ${date}`}</p>
+      </div>
+
+      {/* <div>
         <p>Note title: {title}</p>
         <p>Note content: {content}</p>
-      </div>
+      </div> */}
     </PageLayout>
   );
 };

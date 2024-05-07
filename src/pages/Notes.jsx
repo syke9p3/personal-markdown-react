@@ -19,7 +19,7 @@ const Notes = () => {
     loading,
   } = useFetch(`http://localhost:3030/notes`);
 
-  const [view, setView] = useState("grid");
+  const [view, setView] = useState("list");
 
   const handleToggleView = (view) => {
     setView(view);

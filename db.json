@@ -3,8 +3,9 @@
     {
       "title": "Meeting Agenda",
       "content": "Discuss project timelines and deliverables. Yey!",
-      "id": "1",
-      "timestamp": "2024-04-25T08:00:00Z"
+      "timestamp": "2024-04-25T08:00:00Z",
+      "updatedAt": "2024-05-07T10:08:55.333Z",
+      "id": "1"
     },
     {
       "id": "2",
@@ -49,10 +50,11 @@
       "timestamp": "2024-04-25T23:45:00Z"
     },
     {
-      "title": "Edited title",
-      "content": "Content here was edited",
-      "id": "12",
-      "timestamp": "2024-04-26T02:00:00Z"
+      "title": "New Plans",
+      "content": "S, and music.",
+      "timestamp": "2024-04-25T23:45:00Z",
+      "updatedAt": "2024-05-07T09:59:30.464Z",
+      "id": "9"
     }
   ]
 }
